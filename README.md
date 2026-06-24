@@ -108,10 +108,9 @@ python scripts/train.py --config configs/kaggle_1dcnn_s12.yaml
 ## Sử dụng trên Kaggle
 
 ```bash
-git clone <REPO_URL>
-cd sensor_signal_analyzer
-pip install -r requirements.txt
-python scripts/train.py --config configs/kaggle_1dcnn_s12.yaml
+!git clone https://github.com/vinhveer/sensor_signal_analyzer
+%cd sensor_signal_analyzer
+!python scripts/train.py --config configs/kaggle_1dcnn_s12.yaml
 ```
 
 Kết quả mặc định được lưu tại `/kaggle/working/History`.

@@ -92,7 +92,6 @@ test:  R6
 pip install -r requirements.txt
 ```
 
-
 ---
 
 ## Chạy training
@@ -101,10 +100,8 @@ pip install -r requirements.txt
 python scripts/train.py \
   --config configs/kaggle_1dcnn_s12.yaml \
   --kaggle-working-dataset-root /kaggle/working/dataset_1_10 \
-  --kaggle-input-root /kaggle/input/<TEN_DATASET_CUA_BAN>/dataset_1_10
+  --kaggle-input-root <PathDataset>
 ```
-
-
 
 ---
 
@@ -116,14 +113,23 @@ python scripts/train.py \
 !python scripts/train.py \
   --config configs/kaggle_1dcnn_s12.yaml \
   --kaggle-working-dataset-root /kaggle/working/dataset_1_10 \
-  --kaggle-input-root /kaggle/input/<TEN_DATASET_CUA_BAN>/dataset_1_10
+  --kaggle-input-root <PathDataset>
+```
+
+Example
+
+```bash
+!git clone https://github.com/vinhveer/sensor_signal_analyzer
+%cd sensor_signal_analyzer
+!python scripts/train.py \
+  --config configs/kaggle_1dcnn_s12.yaml \
+  --kaggle-working-dataset-root /kaggle/working/dataset_1_10 \
+  --kaggle-input-root /kaggle/input/datasets/thanhhieu03092004/test-dynamic-path/dataset_1_10
 ```
 
 Kết quả mặc định được lưu tại `/kaggle/working/History`.
 
 ---
-
-
 
 ## Output sau khi train
 
@@ -149,23 +155,27 @@ History/
 
 Tất cả tham số nằm trong `configs/kaggle_1dcnn_s12.yaml`:
 
-| Nhóm | Tham số chính |
-|---|---|
-| `data` | đường dẫn dataset, tên cột acceleration, separator CSV |
-| `windowing` | window=1024, overlap=0.75, step tự tính |
-| `split` | train/val/test run id, số file mỗi class |
-| `training` | batch_size, epochs, learning_rate, weight_decay |
-| `model` | fc_dim, dropout |
-| `outputs` | root, save_zip |
+
+| Nhóm        | Tham số chính                                          |
+| ----------- | ------------------------------------------------------ |
+| `data`      | đường dẫn dataset, tên cột acceleration, separator CSV |
+| `windowing` | window=1024, overlap=0.75, step tự tính                |
+| `split`     | train/val/test run id, số file mỗi class               |
+| `training`  | batch_size, epochs, learning_rate, weight_decay        |
+| `model`     | fc_dim, dropout                                        |
+| `outputs`   | root, save_zip                                         |
+
 
 `step_size` được tự tính nếu không khai báo: `int(window * (1 - overlap))`.
 
 Hai tham số sau trong config có thể được ghi đè từ CLI:
 
-| Config key | CLI argument |
-|---|---|
-| `data.kaggle_working_dataset_root` | `--kaggle-working-dataset-root` |
-| `data.kaggle_input_root_candidates` | `--kaggle-input-root` |
+
+| Config key                          | CLI argument                    |
+| ----------------------------------- | ------------------------------- |
+| `data.kaggle_working_dataset_root`  | `--kaggle-working-dataset-root` |
+| `data.kaggle_input_root_candidates` | `--kaggle-input-root`           |
+
 
 ---
 
@@ -181,3 +191,4 @@ DataLoader worker được seed qua `seed_worker`. Seed mặc định là `42`.
 ```bash
 python -m pytest
 ```
+

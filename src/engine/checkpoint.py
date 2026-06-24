@@ -19,13 +19,15 @@ def _checkpoint_config(ctx: RunContext) -> dict:
             "batch_size": ctx.batch_size,
             "epochs": ctx.epochs,
             "learning_rate": ctx.learning_rate,
+            "weight_decay": ctx.weight_decay,
             "num_workers": ctx.num_workers,
+            "grad_clip_norm": ctx.grad_clip_norm,
             "global_seed": ctx.global_seed,
             "split_seed": ctx.split_seed,
             "local_centering": True,
             "local_scaling": True,
         },
-        "model": {"fc_dim": ctx.fc_dim, "dropout": ctx.dropout},
+        "model": ctx.model_config,
     }
 
 

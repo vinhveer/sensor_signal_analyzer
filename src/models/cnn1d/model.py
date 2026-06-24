@@ -23,6 +23,7 @@ class Conv1dSame(nn.Module):
         pad_right = pad_needed - pad_left
         return self.conv(F.pad(x, (pad_left, pad_right)))
 
+
 class Conv1DClassifier(nn.Module):
     def __init__(self, in_channels: int, num_classes: int, window: int, fc_dim: int, dropout: float):
         super().__init__()

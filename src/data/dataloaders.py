@@ -4,7 +4,7 @@ from __future__ import annotations
 import torch
 from torch.utils.data import DataLoader
 
-from ..utils.seed import seed_worker
+from utils.seed import seed_worker
 from .dataset import DataConfig, WindowDataset, build_index, list_npy_files, split_files_for_class
 
 

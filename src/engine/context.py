@@ -8,8 +8,8 @@ from pathlib import Path
 
 import torch
 
-from ..data.dataset import DataConfig
-from ..data.discovery import prepare_dataset_root
+from data.dataset import DataConfig
+from data.discovery import prepare_dataset_root
 
 
 def _build_data_config(config: dict, dataset_root: str) -> DataConfig:
@@ -54,8 +54,7 @@ class RunContext:
     weight_decay: float
     num_workers: int
     grad_clip_norm: float
-    fc_dim: int
-    dropout: float
+    model_config: dict
 
 
 def prepare_run_context(global_seed: int, config: dict, output_root: str) -> RunContext:
@@ -100,6 +99,5 @@ def prepare_run_context(global_seed: int, config: dict, output_root: str) -> Run
         weight_decay=float(training["weight_decay"]),
         num_workers=int(training["num_workers"]),
         grad_clip_norm=float(training["grad_clip_norm"]),
-        fc_dim=int(model_cfg["fc_dim"]),
-        dropout=float(model_cfg["dropout"]),
+        model_config=dict(model_cfg),
     )

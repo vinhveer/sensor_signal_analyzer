@@ -1,4 +1,4 @@
-"""Default constants used as fallbacks when not provided by YAML config."""
+"""Default constants used by data loading and CSV conversion."""
 from __future__ import annotations
 
 DEFAULT_CSV_SEP_CANDIDATES = [",", ";", None]

@@ -3,9 +3,9 @@ from __future__ import annotations
 
 import os
 
-from ..utils.io import save_json
-from ..visualization.confusion_matrix import plot_confusion_matrix
-from ..visualization.curves import plot_performance
+from utils.io import save_json
+from visualization.confusion_matrix import plot_confusion_matrix
+from visualization.curves import plot_performance
 from .context import RunContext
 
 

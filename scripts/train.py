@@ -1,4 +1,4 @@
-"""Thin wrapper so users can run `python scripts/train.py --config ...`."""
+"""Thin wrapper so users can run `python scripts/train.py ...`."""
 from __future__ import annotations
 
 import sys
@@ -8,7 +8,7 @@ SRC_DIR = Path(__file__).resolve().parent.parent / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from sensorcls.cli.train import main
+from cli.train import main
 
 if __name__ == "__main__":
     main()

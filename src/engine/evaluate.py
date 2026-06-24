@@ -9,7 +9,8 @@ from torch.utils.data import DataLoader
 from .context import RunContext
 
 
-def evaluate_model(model: nn.Module, loader: DataLoader, device: torch.device, criterion: nn.Module, n_class: int):
+def evaluate_model(model: nn.Module, loader: DataLoader, device: torch.device, criterion: nn.Module, n_class: int, predict_fn=None):
+    predict_fn = predict_fn or (lambda model, xb: model(xb))
     model.eval()
     total_loss = 0.0
     y_true, y_pred, y_probs = [], [], []
@@ -17,7 +18,7 @@ def evaluate_model(model: nn.Module, loader: DataLoader, device: torch.device, c
         for xb, yb in loader:
             xb = xb.to(device, non_blocking=True)
             yb = yb.to(device, non_blocking=True)
-            logits = model(xb)
+            logits = predict_fn(model, xb)
             loss = criterion(logits, yb)
             probs = torch.softmax(logits, dim=1)
             preds = torch.argmax(probs, dim=1)
@@ -33,9 +34,9 @@ def evaluate_model(model: nn.Module, loader: DataLoader, device: torch.device, c
     return loss, acc, y_true, y_pred, y_probs
 
 
-def evaluate_best_model(model: nn.Module, val_loader: DataLoader, test_loader: DataLoader, eval_criterion: nn.Module, ctx: RunContext):
+def evaluate_best_model(model: nn.Module, val_loader: DataLoader, test_loader: DataLoader, eval_criterion: nn.Module, ctx: RunContext, predict_fn=None):
     payload = torch.load(ctx.checkpoint_path, map_location=ctx.device)
     model.load_state_dict(payload["model_state_dict"])
-    val_loss, _, _, _, _ = evaluate_model(model, val_loader, ctx.device, eval_criterion, len(ctx.classes))
-    test_loss, test_acc, test_true, test_pred, _ = evaluate_model(model, test_loader, ctx.device, eval_criterion, len(ctx.classes))
+    val_loss, _, _, _, _ = evaluate_model(model, val_loader, ctx.device, eval_criterion, len(ctx.classes), predict_fn)
+    test_loss, test_acc, test_true, test_pred, _ = evaluate_model(model, test_loader, ctx.device, eval_criterion, len(ctx.classes), predict_fn)
     return payload, val_loss, test_loss, test_acc, test_true, test_pred

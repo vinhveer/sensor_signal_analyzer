@@ -7,7 +7,7 @@ REQUIRED_TOP_LEVEL_KEYS = ["dataset_name", "model_name", "data", "windowing", "s
 
 DEFAULT_CONFIG = {
     "dataset_name": "dataset_1_10",
-    "model_name": "1dcnn",
+    "model_name": "resnet1D",
     "data": {
         "kaggle_dataset_subdir": "Processed",
         "kaggle_working_dataset_root": "/kaggle/working/dataset_1_10",
@@ -38,7 +38,7 @@ DEFAULT_CONFIG = {
         "num_workers": 0,
         "grad_clip_norm": 1.0,
     },
-    "model": {"name": "cnn1d", "fc_dim": 128, "dropout": 0.0},
+    "model": {"name": "resnet1D", "n_feature_maps": 64},
     "outputs": {"root": "/kaggle/working/History", "save_zip": True},
 }
 

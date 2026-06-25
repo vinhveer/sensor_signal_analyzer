@@ -2,12 +2,12 @@ import torch
 import pytest
 
 from models import build_model
-from models.cnn1d import Conv1DClassifier
+from models.resnet1D import ResNet1D
 
 
-def test_cnn1d_forward_shape():
+def test_resnet1d_forward_shape():
     model = build_model(
-        {"name": "cnn1d", "fc_dim": 128, "dropout": 0.4},
+        {"name": "resnet1D", "n_feature_maps": 64},
         in_channels=2,
         num_classes=4,
         window=1024,
@@ -15,7 +15,7 @@ def test_cnn1d_forward_shape():
     x = torch.randn(8, 2, 1024)
     y = model(x)
     assert y.shape == (8, 4)
-    assert isinstance(model, Conv1DClassifier)
+    assert isinstance(model, ResNet1D)
 
 
 def test_build_model_rejects_unknown_model():
@@ -23,6 +23,6 @@ def test_build_model_rejects_unknown_model():
         build_model({"name": "missing"}, in_channels=2, num_classes=4, window=1024)
 
 
-def test_cnn1d_rejects_unknown_params():
-    with pytest.raises(ValueError, match="Unknown cnn1d params"):
-        build_model({"name": "cnn1d", "unknown": 1}, in_channels=2, num_classes=4, window=1024)
+def test_resnet1d_rejects_unknown_params():
+    with pytest.raises(ValueError, match="Unknown resnet1D params"):
+        build_model({"name": "resnet1D", "unknown": 1}, in_channels=2, num_classes=4, window=1024)

@@ -25,8 +25,7 @@ def args(**overrides):
         "num_workers": None,
         "grad_clip_norm": None,
         "model_name": None,
-        "fc_dim": None,
-        "dropout": None,
+        "n_feature_maps": None,
     }
     values.update(overrides)
     return SimpleNamespace(**values)
@@ -34,8 +33,8 @@ def args(**overrides):
 
 def test_model_cli_overrides_merge_into_config():
     config = default_config()
-    apply_cli_overrides(config, args(model_name="cnn1d", fc_dim=64, dropout=0.2))
-    assert config["model"] == {"name": "cnn1d", "fc_dim": 64, "dropout": 0.2}
+    apply_cli_overrides(config, args(model_name="resnet1D", n_feature_maps=32))
+    assert config["model"] == {"name": "resnet1D", "n_feature_maps": 32}
 
 
 def test_training_cli_overrides_merge_into_config():

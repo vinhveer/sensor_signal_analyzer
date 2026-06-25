@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from . import cnn1d
+from . import resnet1D
 
 
 MODEL_REGISTRY = {
-    "cnn1d": cnn1d,
+    "resnet1D": resnet1D,
 }
 
 

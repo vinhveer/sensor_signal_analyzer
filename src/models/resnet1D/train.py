@@ -3,18 +3,16 @@ from __future__ import annotations
 import torch
 from torch import nn
 
-from .model import Conv1DClassifier
-from .params import Conv1DParams
+from .model import ResNet1D
+from .params import ResNet1DParams
 
 
-def build_model(model_config: dict, in_channels: int, num_classes: int, window: int) -> Conv1DClassifier:
-    params = Conv1DParams.from_config(model_config)
-    return Conv1DClassifier(
+def build_model(model_config: dict, in_channels: int, num_classes: int, _window: int) -> ResNet1D:
+    params = ResNet1DParams.from_config(model_config)
+    return ResNet1D(
         in_channels=in_channels,
+        n_feature_maps=params.n_feature_maps,
         num_classes=num_classes,
-        window=window,
-        fc_dim=params.fc_dim,
-        dropout=params.dropout,
     )
 
 

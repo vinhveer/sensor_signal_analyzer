@@ -86,7 +86,7 @@ def main() -> None:
     parser.add_argument("--weight-decay", type=float, help="Optimizer weight decay.")
     parser.add_argument("--num-workers", type=int, help="DataLoader worker count.")
     parser.add_argument("--grad-clip-norm", type=float, help="Gradient clipping norm.")
-    parser.add_argument("--model-name", help="Override model.name from config, for example cnn1d.")
+    parser.add_argument("--model-name", help="Override model.name from config, for example resnet1D.")
     add_model_cli_args(parser)
     args = parser.parse_args()
 

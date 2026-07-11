@@ -1,0 +1,12 @@
+Dataset: dataset_1_10
+Model: hybrid_cnn_transformer
+Seeds: 42
+
+Per-seed scores:
+  seed42, accuracy=0.739583, precision=0.770538, recall=0.739583, f1score=0.736587
+
+Mean +- std:
+  accuracy: 0.739583 +- 0.000000
+  precision: 0.770538 +- 0.000000
+  recall: 0.739583 +- 0.000000
+  f1score: 0.736587 +- 0.000000

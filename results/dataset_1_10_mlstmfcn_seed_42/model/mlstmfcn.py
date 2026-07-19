@@ -32,7 +32,7 @@ class MLSTMfcn(nn.Module):
         conv2_nf: int = 256,
         conv3_nf: int = 128,
         lstm_drop_p: float = 0.2,
-        fc_drop_p: float = 0.2,
+        fc_drop_p: float = 0.1,
     ):
         super().__init__()
         self.num_classes = num_classes
@@ -60,6 +60,7 @@ class MLSTMfcn(nn.Module):
         self.bn3 = nn.BatchNorm1d(self.conv3_nf)
         self.se1 = SELayer(self.conv1_nf)
         self.se2 = SELayer(self.conv2_nf)
+        self.se3 = SELayer(self.conv3_nf)
         self.relu = nn.ReLU()
         self.lstm_drop = nn.Dropout(self.lstm_drop_p)
         self.conv_drop = nn.Dropout(self.fc_drop_p)
@@ -86,14 +87,15 @@ class MLSTMfcn(nn.Module):
         conv_out = self.conv_drop(self.relu(self.bn2(self.conv2(conv_out))))
         conv_out = self.se2(conv_out)
         conv_out = self.conv_drop(self.relu(self.bn3(self.conv3(conv_out))))
+        conv_out = self.se3(conv_out)
         conv_out = torch.mean(conv_out, 2)
 
         features = torch.cat((lstm_out, conv_out), dim=1)
-        return F.log_softmax(self.fc(features), dim=1)
+        return self.fc(features)
 
 
 class MLSTMfcnClassifier(nn.Module):
-    def __init__(self, in_channels: int=2, window: int=1024, num_classes: int=4):
+    def __init__(self, in_channels: int =2, window: int =1024, num_classes: int =4):
         super().__init__()
         self.window = int(window)
         self.model = MLSTMfcn(

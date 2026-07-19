@@ -11,19 +11,19 @@
     "Healthy",
     "Nut"
   ],
-  "best_epoch": 70,
-  "best_val_acc": 0.8125,
-  "best_val_loss": 0.7151196971535683,
-  "test_loss": 0.4779174569994211,
-  "test_acc": 0.8541666666666666,
-  "dataset_root": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10",
+  "best_epoch": 72,
+  "best_val_acc": 0.8177083333333334,
+  "best_val_loss": 0.7153308590253195,
+  "test_loss": 0.4293038447697957,
+  "test_acc": 0.8697916666666666,
+  "dataset_root": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10",
   "config": {
     "dataset_name": "dataset_1_10",
     "model_name": "mlstmfcn",
     "global_seed": 42,
     "data": {
       "train": {
-        "root": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10",
+        "root": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10",
         "subdir": "Processed",
         "channels": 2,
         "window": 1024,
@@ -33,7 +33,7 @@
         "eps": 1e-08
       },
       "eval": {
-        "root": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10",
+        "root": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10",
         "subdir": "Processed",
         "channels": 2,
         "window": 1024,
@@ -63,366 +63,366 @@
     "split_files": {
       "train": [
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R1.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R2.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R3.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R4.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R1.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R2.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R3.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R4.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/NS1B1R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/NS1B1R1.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/NS1B1R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/NS1B1R2.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/NS1B1R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/NS1B1R3.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/NS1B1R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/NS1B1R4.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L1R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L1R1.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L1R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L1R2.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L1R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L1R3.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L1R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L1R4.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L2R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L2R1.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L2R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L2R2.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L2R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L2R3.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L2R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L2R4.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/NS1B3R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/NS1B3R1.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/NS1B3R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/NS1B3R2.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/NS1B3R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/NS1B3R3.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/NS1B3R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/NS1B3R4.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L1R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L1R1.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L1R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L1R2.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L1R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L1R3.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L1R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L1R4.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L2R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L2R1.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L2R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L2R2.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L2R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L2R3.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L2R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L2R4.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/NS0R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/NS0R1.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/NS0R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/NS0R2.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/NS0R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/NS0R3.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/NS0R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/NS0R4.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L1R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L1R1.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L1R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L1R2.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L1R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L1R3.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L1R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L1R4.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L2R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L2R1.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L2R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L2R2.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L2R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L2R3.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L2R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L2R4.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/NS1B2R1.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/NS1B2R1.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/NS1B2R2.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/NS1B2R2.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/NS1B2R3.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/NS1B2R3.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/NS1B2R4.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/NS1B2R4.npy",
           "label": 3,
           "class": "Nut"
         }
       ],
       "val": [
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R5.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R5.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/NS1B1R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/NS1B1R5.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L1R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L1R5.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L2R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L2R5.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/NS1B3R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/NS1B3R5.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L1R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L1R5.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L2R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L2R5.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/NS0R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/NS0R5.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L1R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L1R5.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L2R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L2R5.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/NS1B2R5.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/NS1B2R5.npy",
           "label": 3,
           "class": "Nut"
         }
       ],
       "test": [
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L1R6.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/BS1B1L2R6.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Dinh/Processed/NS1B1R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Dinh/Processed/NS1B1R6.npy",
           "label": 0,
           "class": "Dinh"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L1R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L1R6.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/BS1B3L2R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/BS1B3L2R6.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Giang/Processed/NS1B3R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Giang/Processed/NS1B3R6.npy",
           "label": 1,
           "class": "Giang"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L1R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L1R6.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/BS0L2R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/BS0L2R6.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Healthy/Processed/NS0R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Healthy/Processed/NS0R6.npy",
           "label": 2,
           "class": "Healthy"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L1R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L1R6.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/BS1B2L2R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/BS1B2L2R6.npy",
           "label": 3,
           "class": "Nut"
         },
         {
-          "file": "/kaggle/input/datasets/anhthu105/dataset-1-10/dataset_1_10/Nut/Processed/NS1B2R6.npy",
+          "file": "/kaggle/input/datasets/thanhhieu03092004/data-set-1-10/dataset_1_10/Nut/Processed/NS1B2R6.npy",
           "label": 3,
           "class": "Nut"
         }

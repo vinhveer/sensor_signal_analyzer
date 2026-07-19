@@ -3,10 +3,10 @@ Model: mlstmfcn
 Seeds: 42
 
 Per-seed scores:
-  seed42, accuracy=0.854167, precision=0.874552, recall=0.854167, f1score=0.851402
+  seed42, accuracy=0.869792, precision=0.876525, recall=0.869792, f1score=0.869111
 
 Mean +- std:
-  accuracy: 0.854167 +- 0.000000
-  precision: 0.874552 +- 0.000000
-  recall: 0.854167 +- 0.000000
-  f1score: 0.851402 +- 0.000000
+  accuracy: 0.869792 +- 0.000000
+  precision: 0.876525 +- 0.000000
+  recall: 0.869792 +- 0.000000
+  f1score: 0.869111 +- 0.000000

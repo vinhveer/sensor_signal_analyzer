@@ -1,212 +1,292 @@
-# Phân loại tín hiệu cảm biến theo thời gian (Sensor Time Series Classification)
+# Sensor Signal Analyzer
 
-## Bài toán
+Phân loại tín hiệu cảm biến hai kênh theo cửa sổ thời gian bằng PyTorch.
 
-Phân loại tín hiệu cảm biến dạng chuỗi thời gian thành các nhãn lớp bằng mô hình 1D CNN.
-Mỗi cửa sổ tín hiệu có `1024` time step và `2` kênh (acceleration-x từ hai cảm biến).
-
----
-
-## Cấu trúc project
+## Cấu trúc
 
 ```text
-sensor_signal_analyzer/
+src/
+├── lib/                         Thư viện dùng chung, không biết model cụ thể
+│   ├── apps.py                  Abstract TrainApp và InferenceApp
+│   ├── config/                  Config mặc định và validation
+│   ├── data/                    Discovery, conversion, Dataset, DataLoader
+│   ├── engine/                  Train, evaluate, checkpoint, metrics, report
+│   ├── utils/                   Seed, JSON và archive
+│   └── visualization/           Learning curve và confusion matrix
 │
-├── Agents.md                        Tài liệu mô tả yêu cầu refactor
-├── README.md
-├── requirements.txt
-├── .gitignore
-│
-├── scripts/
-│   └── train.py                     Entry point chạy training từ dòng lệnh
-│
-├── src/
-│   ├── cli/
-│   │   └── train.py                 CLI parse params và gọi engine
-│   ├── config/
-│   │   └── loader.py                Default config trong code và validate
-│   ├── data/
-│   │   ├── constants.py             Hằng số fallback mặc định
-│   │   ├── discovery.py             Tìm dataset root (.npy hoặc CSV)
-│   │   ├── conversion.py            Convert CSV sang .npy
-│   │   ├── preprocessing.py         Tính sliding window, normalize từng window
-│   │   ├── dataset.py               WindowDataset, DataConfig, split theo run id
-│   │   └── dataloaders.py           Tạo train/val/test DataLoader
-│   ├── engine/
-│   │   ├── context.py               RunContext (dataclass), prepare_run_context
-│   │   ├── checkpoint.py            Lưu checkpoint tốt nhất
-│   │   ├── evaluate.py              evaluate_model, evaluate_best_model
-│   │   ├── metrics.py               build_scores (accuracy, precision, recall, f1)
-│   │   ├── artifacts.py             build_run_info, save_run_artifacts
-│   │   └── train.py                 train_one_epoch, train_epochs, run_seed
-│   ├── models/
-│   │   ├── registry.py              Route model.name tới model package
-│   │   └── cnn1d/
-│   │       ├── model.py             Conv1dSame, Conv1DClassifier
-│   │       ├── params.py            Conv1DParams, validate param riêng
-│   │       ├── train.py             build_model, build_training_objects
-│   │       └── inference.py         predict_logits
-│   ├── utils/
-│   │   ├── seed.py                  set_global_determinism, seed_worker
-│   │   ├── io.py                    save_json, save_text
-│   │   └── archive.py               zip_run_outputs
-│   └── visualization/
-│       ├── curves.py                plot_performance (learning curve)
-│       └── confusion_matrix.py      plot_confusion_matrix
-│
-└── tests/
-    ├── conftest.py
-    ├── test_dataset.py              Test starts_for_length
-    ├── test_metrics.py              Test build_scores
-    └── test_model_forward.py        Test forward shape của Conv1DClassifier
+└── resnet1d/                    Một model độc lập
+    ├── model.py                 Kiến trúc, chỉ phụ thuộc PyTorch
+    ├── train.py                 CLI train kế thừa lib.TrainApp
+    └── inference.py             CLI inference kế thừa lib.InferenceApp
+
+src/resnet_se_swiglu/
+├── model.py                     ResNet1D + SE + SwiGLU
+├── train.py                     CLI train riêng
+└── inference.py                 CLI inference riêng
+
+src/mlstmfcn/
+├── model.py                     MLSTM-FCN + SE
+├── train.py                     CLI train riêng
+└── inference.py                 CLI inference riêng
 ```
 
----
-
-## Dataset
-
-Mỗi lớp là một folder con trong dataset root. Tín hiệu được lưu trong thư mục con `Processed` dưới dạng:
-
-- `.npy` (ưu tiên dùng trực tiếp)
-- `.csv` (tự động convert sang `.npy` nếu chưa có)
-
-Tên file phải chứa run id dạng `R1`..`R6` để phân chia train/val/test:
+Dependency chỉ đi theo một chiều:
 
 ```text
-train: R1, R2, R3, R4
-val:   R5
-test:  R6
+resnet1d/train.py ────────┐
+resnet1d/inference.py ────┼──> lib
+resnet1d/model.py ────────┘    không import lib
 ```
-
----
 
 ## Cài đặt
 
 ```bash
-pip install -r requirements.txt
+python -m venv .venv
+./.venv/bin/pip install -r requirements.txt
+./.venv/bin/pip install -e .
 ```
 
----
-
-## Chạy training
-
-```bash
-python scripts/train.py \
-  --dataset-root /kaggle/working/dataset_1_10 \
-  --kaggle-input-root <PathDataset> \
-  --epochs 100 \
-  --batch-size 32 \
-  --fc-dim 128 \
-  --dropout 0.0
-```
-
----
-
-## Sử dụng trên Kaggle
-
-```bash
-!git clone https://github.com/vinhveer/sensor_signal_analyzer
-%cd sensor_signal_analyzer
-!python scripts/train.py \
-  --dataset-root /kaggle/working/dataset_1_10 \
-  --kaggle-input-root <PathDataset>
-```
-
-Example
-
-```bash
-!git clone https://github.com/vinhveer/sensor_signal_analyzer
-%cd sensor_signal_analyzer
-!python scripts/train.py \
-  --dataset-root /kaggle/working/dataset_1_10 \
-  --kaggle-input-root /kaggle/input/datasets/thanhhieu03092004/test-dynamic-path/dataset_1_10
-```
-
-Kết quả mặc định được lưu tại `/kaggle/working/History`.
-
----
-
-## Output sau khi train
-
-Nằm trong `--output-root` (mặc định `/kaggle/working/History`):
+## Dataset
 
 ```text
-History/
-├── seed42/
-│   ├── best_<dataset>_<model>.pt
-│   ├── history_<dataset>_<model>.json
-│   ├── run_info_<dataset>_<model>.json
-│   ├── scores_<dataset>_<model>.json
-│   ├── learning_curve_<dataset>_<model>.png
-│   └── confusion_matrix_<dataset>_<model>_test.png
-├── seed_stats_<dataset>_<model>_seeds42.txt
-├── summary_<dataset>_<model>_seeds42.json
-└── <dataset>_<model>_seeds42.zip
+dataset_root/
+├── Dinh/Processed/*.npy
+├── Giang/Processed/*.npy
+├── Healthy/Processed/*.npy
+└── Nut/Processed/*.npy
 ```
 
----
+Mỗi `.npy` có shape `(time, 2)`. Tên file chứa run ID:
 
-## Tham số CLI
+```text
+R1-R4: train
+R5:    validation
+R6:    test
+```
 
-Mặc định nằm trong code, chỉnh bằng CLI. Không cần YAML.
+Trên Kaggle, dataset dự kiến nằm tại:
 
+```text
+/kaggle/input/datasets/platformciviltwin/dataset-1-10/dataset_1_10
+```
 
-| Nhóm        | Tham số chính                                          |
-| ----------- | ------------------------------------------------------ |
-| `data`      | đường dẫn dataset, tên cột acceleration, separator CSV |
-| `windowing` | window=1024, overlap=0.75, step tự tính                |
-| `split`     | train/val/test run id, số file mỗi class               |
-| `training`  | batch_size, epochs, learning_rate, weight_decay        |
-| `model`     | name và tham số riêng của từng model                   |
-| `outputs`   | root, save_zip                                         |
+`--dataset-root` phải trỏ tới thư mục chứa trực tiếp `Dinh`, `Giang`, `Healthy`, `Nut`. Nếu các class nằm trực tiếp trong `/kaggle/input/datasets/platformciviltwin/dataset-1-10`, hãy dùng đường dẫn đó thay vì nối thêm `/dataset_1_10`.
 
+## Hướng Dẫn Theo Model
 
-`step_size` được tự tính: `int(window * (1 - overlap))`.
+- [ResNet1D](src/resnet1d/README.md)
+- [ResNet-SE-SwiGLU](src/resnet_se_swiglu/README.md)
+- [MLSTM-FCN](src/mlstmfcn/README.md)
 
-Các tham số thường dùng có thể ghi đè từ CLI:
+Kiểm tra Kaggle nhận đủ hai T4:
 
+```python
+import torch
 
-| Config key                          | CLI argument                    |
-| ----------------------------------- | ------------------------------- |
-| `data.kaggle_working_dataset_root`  | `--kaggle-working-dataset-root` |
-| `data.kaggle_input_root_candidates` | `--kaggle-input-root`           |
-| `model.name`                        | `--model-name`                  |
-| `model.fc_dim`                      | `--fc-dim`                      |
-| `model.dropout`                     | `--dropout` hoặc `--drop-out`   |
-| `training.epochs`                   | `--epochs`                      |
-| `training.batch_size`               | `--batch-size`                  |
-| `training.learning_rate`            | `--learning-rate`               |
-| `training.seeds`                    | `--seeds 42,43`                 |
-| `windowing.window`                  | `--window`                      |
-| `windowing.overlap`                 | `--overlap`                     |
-| `outputs.root`                      | `--output-root`                 |
+print(torch.cuda.device_count())
+for index in range(torch.cuda.device_count()):
+    print(index, torch.cuda.get_device_name(index))
+```
 
-Ví dụ override model từ CLI:
+Pipeline hiện chưa có DDP: một lệnh train dùng một T4. README của từng model có ví dụ dùng `CUDA_VISIBLE_DEVICES=0/1` để chạy hai seed hoặc hai experiment độc lập cùng lúc trên T4 x2.
+
+Mỗi model có đủ ba command:
+
+```text
+python -m <model>.train       Train và sinh checkpoint/learning curve/confusion matrix
+python -m <model>.inference   Load checkpoint và trả class/probabilities
+python -m <model>.visualize   Load checkpoint và sinh inference JSON/PNG
+```
+
+## Train ResNet1D
+
+Sau khi `pip install -e .`:
 
 ```bash
-python scripts/train.py \
-  --model-name cnn1d \
-  --fc-dim 64 \
-  --dropout 0.2 \
-  --epochs 50
+python -m resnet1d.train \
+  --dataset-root "/Users/nguyenquangvinh/Desktop/project_ce/dataset_1_10" \
+  --output-root History \
+  --epochs 100 \
+  --batch-size 32 \
+  --n-feature-maps 64
 ```
 
-Thêm model mới: tạo folder trong `src/models/`, khai báo CLI args riêng trong `cli.py`, rồi đăng ký trong `src/models/registry.py`.
-CLI và training loop không cần biết class cụ thể.
-
-
----
-
-## Tái tạo kết quả (Reproducibility)
-
-`set_global_determinism(seed)` seed Python, NumPy, PyTorch và bật `use_deterministic_algorithms`.
-DataLoader worker được seed qua `seed_worker`. Seed mặc định là `42`.
-
----
-
-## Chạy test
+Nếu chưa cài editable package:
 
 ```bash
-python -m pytest
+PYTHONPATH=src python -m resnet1d.train --dataset-root /path/to/dataset
 ```
 
+## Inference
+
+Inference trên một file tín hiệu `.npy`:
+
+```bash
+python -m resnet1d.inference \
+  --checkpoint History/seed42/best_dataset_1_10_resnet1D.pt \
+  --input /path/to/signal.npy
+```
+
+Pipeline tự cắt sliding window, chuẩn hóa, chạy từng batch và lấy trung bình xác suất của các cửa sổ.
+
+## Thêm Model
+
+Tạo package ngang hàng với `resnet1d`:
+
+```text
+src/newmodel/
+├── __init__.py
+├── model.py
+├── train.py
+└── inference.py
+```
+
+`model.py` chỉ chứa kiến trúc PyTorch, không phụ thuộc `lib`:
+
+```python
+from torch import nn
+
+
+class NewModel(nn.Module):
+    def __init__(self, in_channels, num_classes, window, hidden_size=64):
+        super().__init__()
+        self.network = ...
+
+    def forward(self, x):
+        return self.network(x)
+```
+
+`train.py` chỉ nối tham số riêng của model vào pipeline chung:
+
+```python
+import argparse
+
+from lib.apps import TrainApp
+from .model import NewModel
+
+
+class NewModelTrainApp(TrainApp):
+    model_name = "newmodel"
+
+    def add_model_args(self, parser: argparse.ArgumentParser):
+        parser.add_argument("--hidden-size", type=int, default=64)
+
+    def model_config(self, args):
+        return {"hidden_size": args.hidden_size}
+
+    def build_model(self, in_channels, num_classes, window, config):
+        return NewModel(in_channels, num_classes, window, config["hidden_size"])
+
+
+if __name__ == "__main__":
+    NewModelTrainApp().run()
+```
+
+Model mới tự dùng lại data loading, optimizer, loss, scheduler, checkpoint, metrics và toàn bộ biểu đồ trong `lib`.
+
+Lệnh module chuẩn của Python là `python -m resnet1d.train`, không phải `python resnet1d.train`.
+
+## Train ResNet-SE-SwiGLU
+
+Chạy trên dataset local:
+
+```bash
+./.venv/bin/python -m resnet_se_swiglu.train \
+  --dataset-root "/Users/nguyenquangvinh/Desktop/project_ce/dataset_1_10" \
+  --output-root "History/resnet_se_swiglu" \
+  --epochs 100 \
+  --batch-size 32 \
+  --window 1024 \
+  --overlap 0.75 \
+  --n-feature-maps 64 \
+  --se-ratio 0.0625 \
+  --ffn-ratio 2.6666667 \
+  --dropout 0.01 \
+  --seeds 42
+```
+
+Máy local không có CUDA sẽ chạy FP32. Trên Kaggle T4, bật AMP và DataLoader workers:
+
+```bash
+python -m resnet_se_swiglu.train \
+  --dataset-root "/kaggle/input/.../dataset_1_10" \
+  --output-root "/kaggle/working/resnet_se_swiglu_amp" \
+  --epochs 100 \
+  --batch-size 32 \
+  --num-workers 2 \
+  --amp \
+  --n-feature-maps 64 \
+  --seeds 42
+```
+
+Để benchmark FP32 công bằng, chạy cùng cấu hình với `--no-amp` và output root khác. History lưu:
+
+```text
+train_time_seconds
+val_time_seconds
+epoch_time_seconds
+train_samples_per_second
+peak_gpu_memory_mb
+use_amp
+```
+
+Train cấu hình cuối bằng nhiều seed:
+
+```bash
+./.venv/bin/python -m resnet_se_swiglu.train \
+  --dataset-root "/Users/nguyenquangvinh/Desktop/project_ce/dataset_1_10" \
+  --output-root "History/resnet_se_swiglu_final" \
+  --epochs 100 \
+  --batch-size 32 \
+  --n-feature-maps 64 \
+  --seeds 42,43,44,45,46
+```
+
+Inference:
+
+```bash
+./.venv/bin/python -m resnet_se_swiglu.inference \
+  --checkpoint "History/resnet_se_swiglu/seed42/best_dataset_1_10_resnet_se_swiglu.pt" \
+  --input "/path/to/signal.npy"
+```
+
+Chưa bật DDP, GPU normalization hoặc temporal downsampling. Các thay đổi này cần benchmark/profiler hoặc ablation trước vì dataset hiện chỉ có 765 training windows.
+
+## Train MLSTM-FCN
+
+Package `mlstmfcn` dùng chung pipeline dữ liệu. Mỗi batch vào model có shape `(batch, 2, 1024)`; nhánh CNN dùng trực tiếp tensor này, nhánh LSTM transpose thành `(batch, 1024, 2)`.
+
+Train với cấu hình từ model gốc:
+
+```bash
+./.venv/bin/python -m mlstmfcn.train \
+  --dataset-root "/Users/nguyenquangvinh/Desktop/project_ce/dataset_1_10" \
+  --output-root "History/mlstmfcn" \
+  --epochs 100 \
+  --batch-size 32 \
+  --window 1024 \
+  --overlap 0.75 \
+  --lstm-hidden 128 \
+  --lstm-layers 1 \
+  --conv1-channels 128 \
+  --conv2-channels 256 \
+  --conv3-channels 128 \
+  --lstm-dropout 0.2 \
+  --conv-dropout 0.1 \
+  --se-reduction 16 \
+  --seeds 42
+```
+
+Trên Kaggle T4 có thể thêm:
+
+```text
+--amp --num-workers 2
+```
+
+Inference:
+
+```bash
+./.venv/bin/python -m mlstmfcn.inference \
+  --checkpoint "History/mlstmfcn/seed42/best_dataset_1_10_mlstmfcn.pt" \
+  --input "/path/to/signal.npy"
+```

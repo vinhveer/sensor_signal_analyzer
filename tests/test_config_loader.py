@@ -1,6 +1,6 @@
 import pytest
 
-from config.loader import _compute_derived_fields
+from lib.config.loader import _compute_derived_fields
 
 
 def test_compute_step_size_from_overlap():

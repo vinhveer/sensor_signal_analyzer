@@ -1,6 +1,6 @@
 import numpy as np
 
-from engine.metrics import build_scores
+from lib.engine.metrics import build_scores
 
 
 def test_build_scores_keys():

@@ -1,4 +1,4 @@
-from data.preprocessing import starts_for_length
+from lib.data.preprocessing import starts_for_length
 
 
 def test_starts_for_length():

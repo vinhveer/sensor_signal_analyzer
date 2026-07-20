@@ -11,6 +11,9 @@ class SELayer(nn.Module):
             nn.Linear(channel // reduction, channel, bias=False),
             nn.Sigmoid(),
         )
+        for layer in self.fc:
+            if isinstance(layer, nn.Linear):
+                nn.init.xavier_uniform_(layer.weight)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         batch_size, channels, _ = x.size()
